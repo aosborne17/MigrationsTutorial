@@ -1,4 +1,4 @@
-FROM node:14-slim
+FROM node:14-slim as build
 
 WORKDIR /usr/src/app
 
@@ -8,6 +8,9 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+RUN npm run build
 
-CMD [ "npm", "start" ]
+FROM nginx
+COPY --from=build /usr/src/app/build /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d
