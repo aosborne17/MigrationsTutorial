@@ -1,8 +1,7 @@
-import { Request, Response } from "express";
 import UserService from "../../services/user";
 
 class UserController {
-  async createUser(req: Request, res: Response) {
+  async createUser(req, res) {
     try {
       const { name, email, password } = req.body;
 
@@ -20,7 +19,7 @@ class UserController {
     }
   }
 
-  async getAllUsers(req: Request, res: Response) {
+  async getAllUsers(req, res) {
     try {
       console.log(req.query);
       const { name, page } = req.query;

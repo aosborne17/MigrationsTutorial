@@ -1,19 +1,18 @@
-import express, { Request, Response } from "express";
-import cors from "cors";
-import http from "http";
-import "express-async-errors";
-import { errorHandler } from "./api/middlewares/errorHandler";
-// import { signInRouter } from "./api/routes/signin";
-// import { signUpRouter } from "./api/routes/signup";
-import session from "./api/middlewares/session";
-import db from "./models";
-import userRouter from "./api/routes/user";
+const express = require("express");
+const http = require("http");
+const cors = require("cors");
+require("express-async-errors");
+const { errorHandler } = require("./api/middlewares/errorHandler");
+const { redisSession } = require("./api/middlewares/session");
+const db = require("./models");
+const userRoutes = require("./api/routes/user");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 // configure session middleware
-app.use(session);
+app.use(redisSession);
 
 const server = http.createServer(app);
 
@@ -22,13 +21,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/user", userRouter);
-// app.use("/api/video", userRouter);
-
-app.post("/", async (req, res) => {
-  console.log("test working");
-  res.send("Hey");
-});
+app.use("/api/user", userRoutes);
 
 app.post("/test", async (req, res) => {
   console.log("test working");
@@ -63,13 +56,8 @@ app.delete("/api/user/:id", async (req, res) => {
   res.send("user deleted");
 });
 
-// configure session middleware
-app.use(session);
-
-// app.use(signInRouter);
-// app.use(signUpRouter);
-// app.use(profileRouter);
-
 app.use(errorHandler);
 
-export { server };
+module.exports = {
+  server,
+};

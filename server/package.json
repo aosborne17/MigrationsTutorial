@@ -9,10 +9,9 @@
     "undo-migrate": "npx sequelize-cli db:migrate:undo",
     "make-user-seed": "npx sequelize-cli seed:generate --name demo-user",
     "seed-all": "npx sequelize-cli db:seed:all",
-    "start": "env NODE_ENV=production npm run migrate && node dist/index.js",
-    "dev": "set env NODE_ENV=development npm run migrate && ts-node-dev --poll src/index.ts",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "env NODE_ENV=production npm run migrate && node src/index.js",
+    "dev": "set env NODE_ENV=development npm run migrate && nodemon src/index.ts",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -27,14 +26,11 @@
     "mysql2": "^2.2.5",
     "redis": "^3.1.2",
     "sequelize": "^6.6.5",
-    "sequelize-cli": "^6.2.0",
-    "typescript": "^4.3.5"
+    "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
-    "@types/connect-redis": "^0.0.17",
-    "@types/cors": "^2.8.12",
-    "@types/express": "^4.17.13",
-    "ts-node": "^10.1.0",
-    "ts-node-dev": "^1.1.8"
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12",
+    "supertest": "^6.1.4"
   }
 }

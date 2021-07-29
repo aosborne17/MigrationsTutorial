@@ -1,10 +1,11 @@
-import session from "express-session";
-import connectRedis from "connect-redis";
-import { redisClient } from "../../config/redis";
+const session = require("express-session");
+const connectRedis = require("connect-redis");
+
+const { redisClient } = require("../../config/redis");
 
 const RedisStore = connectRedis(session);
 
-export default session({
+const redisSession = session({
   store: new RedisStore({ client: redisClient }),
   secret: "secret",
   saveUninitialized: false,
@@ -19,3 +20,7 @@ export default session({
     maxAge: 1000 * 60 * 30,
   },
 });
+
+module.exports = {
+  redisSession,
+};
