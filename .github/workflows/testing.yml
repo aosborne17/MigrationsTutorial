@@ -5,15 +5,15 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     steps:
-    - uses: actions/checkout@v2
-    - run: docker-compose up
+      - uses: actions/checkout@v2
+      - run: docker-compose up -d
+      - run: docker ps
