@@ -5,7 +5,7 @@ require("express-async-errors");
 const { errorHandler } = require("./api/middlewares/errorHandler");
 const { redisSession } = require("./api/middlewares/session");
 const db = require("./models");
-const userRoutes = require("./api/routes/user");
+const { userRoutes } = require("./api/routes/user");
 
 const app = express();
 app.use(cors());

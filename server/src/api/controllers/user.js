@@ -1,4 +1,4 @@
-import UserService from "../../services/user";
+const { userService } = require("../../services/user");
 
 class UserController {
   async createUser(req, res) {
@@ -7,7 +7,7 @@ class UserController {
 
       console.log(req.body);
 
-      const user = await UserService.createUser(name, email, password);
+      const user = await userService.createUser(name, email, password);
 
       console.log(user);
 
@@ -24,7 +24,7 @@ class UserController {
       console.log(req.query);
       const { name, page } = req.query;
 
-      const users = await UserService.getAllUsers(name);
+      const users = await userService.getAllUsers(name);
 
       console.log(users);
 
@@ -37,4 +37,6 @@ class UserController {
   }
 }
 
-export default new UserController();
+module.exports = {
+  userController: new UserController(),
+};

@@ -1,4 +1,4 @@
-import db from "../models";
+const db = require("../models");
 
 class UserDAO {
   async createOne(name, email, password) {
@@ -16,4 +16,6 @@ class UserDAO {
   }
 }
 
-export default new UserDAO();
+module.exports = {
+  userDao: new UserDAO(),
+};

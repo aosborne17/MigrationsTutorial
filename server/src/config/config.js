@@ -2,9 +2,9 @@ const fs = require("fs");
 
 module.exports = {
   development: {
-    username: "database_dev",
-    password: "database_dev",
-    database: "database_dev",
+    username: "root",
+    password: "admin",
+    database: "test_db",
     host: "127.0.0.1",
     port: 3306,
     dialect: "mysql",
@@ -27,7 +27,7 @@ module.exports = {
     username: "root",
     password: "admin",
     database: "test_db",
-    host: "127.0.0.1",
+    host: "mysql",
     port: 3306,
     dialect: "mysql",
   },

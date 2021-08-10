@@ -1,13 +1,15 @@
-import UserDAO from "../dao/user";
+const { userDao } = require("../dao/user");
 
 class UserService {
   createUser(name, email, password) {
-    return UserDAO.createOne(name, email, password);
+    return userDao.createOne(name, email, password);
   }
 
   getAllUsers(name) {
-    return UserDAO.getAll(name);
+    return userDao.getAll(name);
   }
 }
 
-export default new UserService();
+module.exports = {
+  userService: new UserService(),
+};
