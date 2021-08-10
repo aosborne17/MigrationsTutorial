@@ -11,7 +11,7 @@ down:
 
 test:
 	docker-compose down 
-	docker-compose -f docker-compose.test.yml up --build -d mysql
+	docker-compose -f docker-compose.test.yml up --build -d
 	docker-compose -f docker-compose.test.yml run api-server
 test-db-up:
 	docker-compose -f docker-compose.test.yml up --build db
