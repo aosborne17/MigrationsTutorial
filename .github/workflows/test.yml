@@ -15,4 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: make test
+      - run: docker-compose down
+      - run: docker-compose -f docker-compose.test.yml up --build -d mysql
+      - run: docker-compose -f docker-compose.test.yml run api-server
