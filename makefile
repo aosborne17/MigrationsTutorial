@@ -10,7 +10,7 @@ down:
 	docker-compose -f docker-compose.yml down
 
 test:
-	docker-compose -f docker-compose.test.yml up --build -d
+	docker-compose -f docker-compose.test.yml up -d --build
 	docker-compose -f docker-compose.test.yml down --volumes
 
 test-db-up:
