@@ -10,9 +10,9 @@ down:
 	docker-compose -f docker-compose.yml down
 
 test:
-	docker-compose -f docker-compose.test.yml up --build
-	docker-compose -f docker-compose.test.yml down --volumes
-
+	docker-compose down 
+	docker-compose -f docker-compose.test.yml up --build -d mysql
+	docker-compose -f docker-compose.test.yml run api-server
 test-db-up:
 	docker-compose -f docker-compose.test.yml up --build db
 

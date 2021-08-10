@@ -5,7 +5,7 @@ module.exports = {
     username: "root",
     password: "admin",
     database: "test_db",
-    host: "127.0.0.1",
+    host: "mysql",
     port: 3306,
     dialect: "mysql",
     dialectOptions: {

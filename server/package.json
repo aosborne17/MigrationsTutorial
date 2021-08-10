@@ -11,7 +11,7 @@
     "seed-all": "npx sequelize-cli db:seed:all",
     "start": "env NODE_ENV=production npm run migrate && node src/index.js",
     "dev": "set env NODE_ENV=development npm run migrate && nodemon src/index.ts",
-    "test": "jest"
+    "test": "npm run migrate && jest"
   },
   "keywords": [],
   "author": "",
