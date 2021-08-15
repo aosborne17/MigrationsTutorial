@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Video extends Model {
+  class OrderLine extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.channelId = this.belongsTo(models.Channel, {
-        foreignKey: "channel_id",
+      this.userId = this.belongsTo(models.Order, {
+        foreignKey: "order_id",
       });
     }
   }
-  Video.init(
+  OrderLine.init(
     {
       id: {
         allowNull: false,
@@ -22,12 +22,21 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      title: DataTypes.STRING,
-      channelId: {
+      sku: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      quantity: {
+        allowNull: false,
         type: DataTypes.INTEGER,
-        field: "channel_id",
+      },
+      orderId: {
+        type: DataTypes.INTEGER,
+        field: "order_id",
+        allowNull: false,
+        onDelete: "CASCADE",
         references: {
-          model: "channel",
+          model: "order",
           key: "id",
         },
       },
@@ -44,10 +53,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Video",
-      tableName: "video",
+      modelName: "OrderLine",
+      tableName: "order-line",
       freezeTableName: true,
     }
   );
-  return Video;
+  return OrderLine;
 };

@@ -6,9 +6,9 @@
   "scripts": {
     "make-user-model": "cd src && npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string",
     "migrate": "cd src && npx sequelize-cli db:migrate",
-    "undo-migrate": "npx sequelize-cli db:migrate:undo",
-    "make-user-seed": "npx sequelize-cli seed:generate --name demo-user",
-    "seed-all": "npx sequelize-cli db:seed:all",
+    "undo-migrate": "cd src && npx sequelize-cli db:migrate:undo",
+    "make-user-seed": "cd src && npx sequelize-cli seed:generate --name demo-user",
+    "seed-all": "env NODE_ENV=production npx sequelize-cli db:seed:all",
     "start": "env NODE_ENV=production npm run migrate && node src/index.js",
     "dev": "set env NODE_ENV=development npm run migrate && nodemon src/index.ts",
     "test": "npm run migrate && jest --detectOpenHandles"

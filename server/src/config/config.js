@@ -10,6 +10,7 @@ module.exports = {
     dialect: "mysql",
     dialectOptions: {
       bigNumberStrings: true,
+      multipleStatements: true,
     },
   },
   // test: {
@@ -30,14 +31,22 @@ module.exports = {
     host: "mysql",
     port: 3306,
     dialect: "mysql",
+    dialectOptions: {
+      bigNumberStrings: true,
+      multipleStatements: true,
+    },
   },
 
   production: {
     username: "root",
-    password: "admin",
+    password: "Glutesgod123!",
     database: "test_db",
-    host: "mysql",
+    host: "localhost",
     port: 3306,
     dialect: "mysql",
+    dialectOptions: {
+      bigNumberStrings: true,
+      multipleStatements: true,
+    },
   },
 };

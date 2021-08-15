@@ -1,20 +1,14 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Channel extends Model {
+  class Batch extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here
-      this.userId = this.belongsTo(models.User, {
-        foreignKey: "user_id",
-      });
-    }
   }
-  Channel.init(
+  Batch.init(
     {
       id: {
         allowNull: false,
@@ -22,17 +16,24 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      name: DataTypes.STRING,
-      userId: {
-        type: DataTypes.INTEGER,
-        field: "user_id",
+      reference: {
         allowNull: false,
-        onDelete: "CASCADE",
-        references: {
-          model: "user",
-          key: "id",
-        },
+        unique: true,
+        type: DataTypes.STRING,
       },
+      sku: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      quantity: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      eta: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
+
       createdAt: {
         type: DataTypes.DATE,
         field: "created_at",
@@ -46,10 +47,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Channel",
-      tableName: "channel",
+      modelName: "Batch",
+      tableName: "batch",
       freezeTableName: true,
     }
   );
-  return Channel;
+  return Batch;
 };
